@@ -1,10 +1,9 @@
-package com.company.practice;
+package com.company.main;
 
 
-import com.company.practice.io.Reader;
-import com.company.practice.io.Writer;
-import com.company.practice.models.InputData;
-import com.company.practice.models.OutputData;
+import com.company.main.io.Reader;
+import com.company.main.io.Writer;
+import com.company.main.models.OutputData;
 
 public class Main {
 
