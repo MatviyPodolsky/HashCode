@@ -37,7 +37,7 @@ public class OutputData {
     public void clearLastData(int count) {
         for (int i = 0; i < count; i++) {
             pizzaCount--;
-            total -= pizzas[pizzaCount];
+            total -= data.getPizzas()[pizzas[pizzaCount]];
         }
     }
 

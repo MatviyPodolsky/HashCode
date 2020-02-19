@@ -9,6 +9,7 @@ public class Logic {
 
     InputData data;
     OutputData res, clearClone;
+    int countDifference;
 
     public Logic(InputData data) {
         this.data = data;
@@ -37,11 +38,18 @@ public class Logic {
         }
 
         clearClone = res.clone();
-        clearClone.clearLastData(res.getPizzaCount() - lastAdded);
+        clearClone.clearLastData(res.getPizzaCount() - lastAdded + 1);
 
-        int subSize = res.getPizzas()[res.getPizzaCount() - 1];
+        int subSize;
+        if (clearClone.getPizzaCount() > 0) {
+            subSize = clearClone.getPizzas()[clearClone.getPizzaCount() - 1] - 1;
+        } else {
+            subSize = data.getPizzaCount() - 1;
+        }
 
-        tryToFill(subSize, clearClone);
+        countDifference = res.getPizzaCount() - clearClone.getPizzaCount();
+
+        tryToFill(subSize, clearClone, 1);
 
 //        for (int i = subSize; i > 0; i--) {
 //            tempClone = clearClone.clone();
@@ -61,14 +69,14 @@ public class Logic {
         return res;
     }
 
-    public void tryToFill(int size, OutputData input) {
-        for (int i = size; i >= 0; i--) {
+    public void tryToFill(int size, OutputData input, int deep) {
+        for (int i = size; i >= Math.max(size - 100, 0); i--) {
             OutputData temp = input.clone();
             if (temp.getTotal() + data.getPizzas()[i] <= data.getMaxSlices()) {
                 temp.addPizza(i);
             }
-            if (i > 0) {
-                tryToFill(i - 1, temp);
+            if (i > 0 && deep < countDifference * 2) {
+                tryToFill(i - 1, temp, deep+1);
             } else if (temp.getTotal() > res.getTotal()) {
                 res = temp.clone();
             }
