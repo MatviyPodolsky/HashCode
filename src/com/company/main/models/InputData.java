@@ -4,31 +4,34 @@ import java.util.Scanner;
 
 public class InputData {
 
-    int maxSlices;
-    int pizzaCount;
-    int[] pizzas;
+    int books, libCount, days;
+    int[] bookWeights;
+    int[] booksCountInLibraries;
+    Library[] libraries;
 
-    public InputData(int maxSlices, int pizzaCount) {
-        this.maxSlices = maxSlices;
-        this.pizzaCount = pizzaCount;
-        this.pizzas = new int[pizzaCount];
+    public InputData(Scanner sc) {
+        this.books = sc.nextInt();
+        this.libCount = sc.nextInt();
+        this.days = sc.nextInt();
+        this.bookWeights = new int[books];
+        this.booksCountInLibraries = new int[libCount];
+        this.libraries = new Library[libCount];
+        fillBookWeights(sc);
+        fillLibraries(sc);
     }
 
-    public void fillPizzas(Scanner sc) {
-        for (int i = 0; i < pizzaCount; i++) {
-            pizzas[i] = sc.nextInt();
+    public void fillBookWeights(Scanner sc) {
+        for (int i = 0; i < books; i++) {
+            bookWeights[i] = sc.nextInt();
         }
     }
 
-    public int getPizzaCount() {
-        return pizzaCount;
+    public void fillLibraries(Scanner sc) {
+        for (int i = 0; i < libCount; i++) {
+            Library l = new Library(sc.nextInt(), sc.nextInt(), sc.nextInt());
+            l.fillBooks(sc);
+            libraries[i] = l;
+        }
     }
 
-    public int[] getPizzas() {
-        return pizzas;
-    }
-
-    public int getMaxSlices() {
-        return maxSlices;
-    }
 }

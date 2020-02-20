@@ -16,8 +16,7 @@ public class Reader {
     public InputData read() {
         try {
             Scanner sc = new Scanner(file);
-            InputData data = new InputData(sc.nextInt(), sc.nextInt());
-            data.fillPizzas(sc);
+            InputData data = new InputData(sc);
             return data;
         } catch (Exception e) {
             System.out.println("error");
