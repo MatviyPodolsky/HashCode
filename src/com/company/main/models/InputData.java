@@ -6,7 +6,6 @@ public class InputData {
 
     int books, libCount, days;
     int[] bookWeights;
-    int[] booksCountInLibraries;
     Library[] libraries;
 
     public InputData(Scanner sc) {
@@ -14,7 +13,6 @@ public class InputData {
         this.libCount = sc.nextInt();
         this.days = sc.nextInt();
         this.bookWeights = new int[books];
-        this.booksCountInLibraries = new int[libCount];
         this.libraries = new Library[libCount];
         fillBookWeights(sc);
         fillLibraries(sc);
