@@ -10,6 +10,7 @@ public class Logic {
     InputData data;
     OutputData res, clearClone;
     int countDifference;
+    boolean wasSolutionFound = false;
 
     public Logic(InputData data) {
         this.data = data;
@@ -42,24 +43,28 @@ public class Logic {
 
         int subSize;
         if (clearClone.getPizzaCount() > 0) {
-            subSize = clearClone.getPizzas()[clearClone.getPizzaCount() - 1] - 1;
+            subSize = clearClone.getPizzas()[clearClone.getPizzaCount() - 1] - 3;// -2 because need to skip last large value
         } else {
             subSize = data.getPizzaCount() - 1;
         }
 
         countDifference = res.getPizzaCount() - clearClone.getPizzaCount();
 
-        tryToFill(subSize, clearClone, 1);
+        for (int i = subSize; i > 0; i++) {
+            tryToFill(subSize - 1, clearClone, 1);
+                System.out.println(wasSolutionFound);
+                if (wasSolutionFound) break;
+        }
 
         return res;
     }
 
     public void tryToFill(int size, OutputData input, int deep) {
-        int max = Math.max(size - 100, 0);
+        int max = Math.max(size - 200, 0);
         for (int i = size; i >= max; i--) {
-            if (deep == 1) {
-                System.out.println(i);
-            }
+//            if (deep == 1) {
+//                System.out.println(i);
+//            }
             OutputData temp = input.clone();
             if (temp.getTotal() + data.getPizzas()[i] <= data.getMaxSlices()) {
                 temp.addPizza(i);
@@ -67,6 +72,7 @@ public class Logic {
                     tryToFill(i - 1, temp, deep+1);
                 } else if (temp.getTotal() > res.getTotal()) {
                     res = temp.clone();
+                    wasSolutionFound = true;
                 }
             }
         }
