@@ -21,4 +21,20 @@ public class Library {
             books[i] = sc.nextInt();
         }
     }
+
+    public int getBooksCount() {
+        return booksCount;
+    }
+
+    public int getSign() {
+        return sign;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int[] getBooks() {
+        return books;
+    }
 }

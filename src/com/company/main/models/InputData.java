@@ -32,4 +32,23 @@ public class InputData {
         }
     }
 
+    public int getBooks() {
+        return books;
+    }
+
+    public int getLibCount() {
+        return libCount;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public int[] getBookWeights() {
+        return bookWeights;
+    }
+
+    public Library[] getLibraries() {
+        return libraries;
+    }
 }
